@@ -50,5 +50,7 @@ Route::get('hello',function(){
 //     EOF;
 //     return $html;
 // });
+// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+// Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
 Route::get('hello', 'App\Http\Controllers\HelloController@index');
-Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
+Route::post('hello', 'App\Http\Controllers\HelloController@post');
