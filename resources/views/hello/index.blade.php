@@ -19,6 +19,10 @@
     </head>
     <body>
       @extends('layouts.helloapp')
+        <style>
+        .pagenation {font-size:10pt;}
+        .pagenation i {display:inline-block;}
+        </style>
 
       @section('title', 'Index')
       @section('menubar')
@@ -37,6 +41,7 @@
           </tr>
           @endforeach
        </table>
+       {{$items->links()}}
       @endsection
         
         @section('footer')

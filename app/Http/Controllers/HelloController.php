@@ -10,12 +10,7 @@ use Illuminate\Support\Facades\DB;
   
 class HelloController extends Controller {
     public function index(Request $request) {
-        if (isset($request->id)){
-            $param = ['id' => $request->id];
-            $items = DB::table('people')->get();
-        } else {
-            $items = DB::select('select * from people');
-        }
+        $items = DB::table('people')->simplePaginate(5);
         return view('hello.index', ['items' => $items]);
     }
 
@@ -87,6 +82,17 @@ class HelloController extends Controller {
 
     public function rest(Request $request) {
         return view('hello.rest');
+    }
+
+    public function ses_get(Request $request) {
+        $sesdata = $request->session()->get('msg');
+        return View('hello.session', ['session_data' => $sesdata]);
+    }
+
+    public function ses_put(Request $request){
+        $msg = $request->input;
+        $request->session()->put('msg', $msg);
+        return redirect('hello/session');
     }
 
 }
