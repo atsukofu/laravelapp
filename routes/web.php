@@ -53,7 +53,7 @@ Route::get('hello',function(){
 // });
 // Route::get('hello', 'App\Http\Controllers\HelloController@index');
 // Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
-Route::get('hello', 'App\Http\Controllers\HelloController@index');
+Route::get('hello', 'App\Http\Controllers\HelloController@index')->middleware('auth');
 Route::post('hello', 'App\Http\Controllers\HelloController@post');
 Route::get('hello/add', 'App\Http\Controllers\HelloController@add');
 Route::post('hello/add', 'App\Http\Controllers\HelloController@create');
@@ -78,3 +78,8 @@ Route::resource('rest', 'App\Http\Controllers\RestappController');
 Route::get('hello/rest', 'App\Http\Controllers\HelloController@rest');
 Route::get('hello/session', 'App\Http\Controllers\HelloController@ses_get');
 Route::post('hello/session','App\Http\Controllers\HelloController@ses_put');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('hello/auth','App\Http\Controllers\HelloController@getAuth' );
+Route::post('hello/auth','App\Http\Controllers\HelloController@postAuth' );
